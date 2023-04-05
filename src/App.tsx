@@ -39,7 +39,7 @@ function App() {
 
 
     useEffect(() => {
-        const socket = io("https://fierce-gorge-53680.herokuapp.com/");
+        const socket = io("https://randomizer-v7no.onrender.com");
         socket.emit("frequency", state.frequency);
         socket.on("message", (data) => {
             if (!state.disabled)
