@@ -4,7 +4,7 @@ let j: number, aj: number, sj: number, cj: number;
 let p1: number, p2: number;
 
 // Vertices
-export const vertices: number[] = [], indices: number[] = [];
+export const sphereVertices: number[] = [], sphereIndices: number[] = [];
 
 for (j = 0; j <= SPHERE_DIV; j++) {
     aj = j * Math.PI / SPHERE_DIV;
@@ -15,9 +15,9 @@ for (j = 0; j <= SPHERE_DIV; j++) {
         si = Math.sin(ai);
         ci = Math.cos(ai);
 
-        vertices.push(si * sj);  // X
-        vertices.push(cj);       // Y
-        vertices.push(ci * sj);  // Z
+        sphereVertices.push(si * sj);  // X
+        sphereVertices.push(cj);       // Y
+        sphereVertices.push(ci * sj);  // Z
     }
 }
 
@@ -26,13 +26,13 @@ for (j = 0; j < SPHERE_DIV; j++) {
         p1 = j * (SPHERE_DIV + 1) + i;
         p2 = p1 + (SPHERE_DIV + 1);
 
-        indices.push(p1);
-        indices.push(p2);
-        indices.push(p1 + 1);
+        sphereIndices.push(p1);
+        sphereIndices.push(p2);
+        sphereIndices.push(p1 + 1);
 
-        indices.push(p1 + 1);
-        indices.push(p2);
-        indices.push(p2 + 1);
+        sphereIndices.push(p1 + 1);
+        sphereIndices.push(p2);
+        sphereIndices.push(p2 + 1);
     }
 }
 

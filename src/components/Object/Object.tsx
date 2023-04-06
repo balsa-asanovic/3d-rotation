@@ -1,13 +1,15 @@
 import React, { useRef, useEffect } from 'react';
 import { glMatrix, mat4 } from 'gl-matrix';
-// import { cubeVertices, cubeIndices } from '../Cube/cubeData';
-import { vertices, indices } from './sphereData';
 
-type cubeProps = {
-    width: number
+
+type objectProps = {
+    size: number,
+    vertices: number[],
+    indices: number[],
+    name: string
 }
 
-const Sphere = ({ width }: cubeProps) => {
+const Object = ({ size, vertices, indices, name }: objectProps) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
     useEffect(() => {
@@ -19,12 +21,10 @@ const Sphere = ({ width }: cubeProps) => {
         let gl = canvas.getContext('webgl');
 
         if (!gl) {
+            // gl = canvas.getContext('experimental-webgl');
             console.error("ERROR getting WebGL context");
             return;
         }
-        // if (!gl) {
-            //gl = canvas?.getContext('experimental-webgl');
-        //}
 
         // background color
         gl.clearColor(0.75, 0.85, 0.8, 1.0);
@@ -113,12 +113,12 @@ const Sphere = ({ width }: cubeProps) => {
         }
 
         // create buffer
-        const cubeVertexBufferObject = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, cubeVertexBufferObject);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices.map((item) => {return item * width})), gl.STATIC_DRAW);
+        const vertexBufferObject = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, vertexBufferObject);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices.map((item, index) => name === "Cylinder" ? index % 3 === 1 ? item * size : item : item * size)), gl.STATIC_DRAW);
 
-        const cubeIndexBufferObject = gl.createBuffer();
-        gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, cubeIndexBufferObject);
+        const indexBufferObject = gl.createBuffer();
+        gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBufferObject);
         gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(indices), gl.STATIC_DRAW)
 
         const positionAttribLocation = gl.getAttribLocation(program as WebGLProgram, 'vertPosition');
@@ -191,7 +191,22 @@ const Sphere = ({ width }: cubeProps) => {
         };
         requestAnimationFrame(loop);
 
-    }, [width]);
+        return () => {
+            // cleanup
+            if (gl) {
+                gl.deleteProgram(program);
+                gl.bindBuffer(gl.ARRAY_BUFFER, vertexBufferObject);
+                gl.bufferData(gl.ARRAY_BUFFER, 1, gl.STATIC_DRAW);
+                gl.deleteBuffer(vertexBufferObject);
+                gl.bindBuffer(gl.ARRAY_BUFFER, indexBufferObject);
+                gl.bufferData(gl.ARRAY_BUFFER, 1, gl.STATIC_DRAW);
+                gl.deleteBuffer(indexBufferObject);
+                gl.deleteShader(vertexShader);
+                gl.deleteShader(fragmentShader);
+            }
+        }
+
+    }, [size, vertices, indices, name]);
 
     return (
         <canvas ref={canvasRef} id="cube-canvas" width="800" height="600">
@@ -200,4 +215,4 @@ const Sphere = ({ width }: cubeProps) => {
     )
 }
 
-export default Sphere;
+export default Object;
