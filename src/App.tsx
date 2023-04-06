@@ -55,7 +55,7 @@ function App() {
                 clearInterval(intervalId);
             }
         } else {
-            const socket = io("https://randomizer-v7no.onrender.com:8080");
+            const socket = io("https://randomizer-v7no.onrender.com");
             socket.emit("frequency", state.frequency);
             state.disabled && socket.emit("stop");
             socket.on("message", (data) => {
