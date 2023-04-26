@@ -7,7 +7,7 @@ WebGL is a JavaScript API for rendering interactive 3D and 2D graphics within an
 
 The variation can be done locally in browser (using JavaScript) or received from the Flask/Python server through a websocket (remotely).
 
-[Live Demo](https://imaginative-cat-228fb6.netlify.app/)
+--> [Live Demo](https://imaginative-cat-228fb6.netlify.app/)
 
 ## Components and data
 
