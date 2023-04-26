@@ -1,46 +1,39 @@
-# Getting Started with Create React App
+# WebGL 3D rotating Cube/Sphere/Cylinder
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A simple WebGL/React app used to render rotating Cube, Sphere and Cylinder.
+There is an option to enable variation of the width, radius and height of mentioned objects and a slider as well to adjust the speed of this variation.
 
-## Available Scripts
+WebGL is a JavaScript API for rendering interactive 3D and 2D graphics within any compatible web browser without the use of plugins. It is being used in this project to render the rotating objects.
 
-In the project directory, you can run:
+The variation can be done locally in browser (using JavaScript) or received from the Flask/Python server through a websocket (remotely).
 
-### `npm start`
+[Live Demo](https://imaginative-cat-228fb6.netlify.app/)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Components and data
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+The source code is organized as follows:
 
-### `npm test`
+### Components
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+[App](./src/App.tsx): The main component of the application. Uses useReducer hook to hold custom object state. It holds the actions for randomizer activation, its speed of variation and choice of local or remote update. It renders the object by giving appropriate vertices and indices arrays and a random value (width/radius/height) to the Object component as props.
 
-### `npm run build`
+[Object](./src/components/Object/Object.tsx): This component uses WebGL to render objects using the received indices and vertices arrays.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Data
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+[Cube Data](./src/components/Object/ObjectData/cubeData.tsx): Contains vertices and indices for the cube.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+[Cylinder Data](./src/components/Object/ObjectData/cylinderData.tsx): Contains vertices and indices for the cylinder.
 
-### `npm run eject`
+[Sphere Data](./src/components/Object/ObjectData/sphereData.tsx): Contains vertices and indices for the sphere.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Getting Started
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+To run the project locally:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. Clone this repository.
+2. Navigate to the project directory in your terminal.
+3. Install dependencies by running npm install.
+4. Run the development server using npm start.
+5. Open http://localhost:3000 in your browser.
