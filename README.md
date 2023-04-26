@@ -15,17 +15,17 @@ The source code is organized as follows:
 
 ### Components
 
-[App](./src/App.tsx): The main component of the application. Uses useReducer hook to hold custom object state. It holds the actions for randomizer activation, its speed of variation and choice of local or remote update. It renders the object by giving appropriate vertices and indices arrays and a random value (width/radius/height) to the Object component as props.
+* [App](./src/App.tsx): The main component of the application. Uses useReducer hook to hold custom object state. It holds the actions for randomizer activation, its speed of variation and choice of local or remote update. It renders the object by giving appropriate vertices and indices arrays and a random value (width/radius/height) to the Object component as props.
 
-[Object](./src/components/Object/Object.tsx): This component uses WebGL to render objects using the received indices and vertices arrays.
+* [Object](./src/components/Object/Object.tsx): This component uses WebGL to render objects using the received indices and vertices arrays.
 
 ### Data
 
-[Cube Data](./src/components/Object/ObjectData/cubeData.tsx): Contains vertices and indices for the cube.
+* [Cube Data](./src/components/Object/ObjectData/cubeData.tsx): Contains vertices and indices for the cube.
 
-[Cylinder Data](./src/components/Object/ObjectData/cylinderData.tsx): Contains vertices and indices for the cylinder.
+* [Cylinder Data](./src/components/Object/ObjectData/cylinderData.tsx): Contains vertices and indices for the cylinder.
 
-[Sphere Data](./src/components/Object/ObjectData/sphereData.tsx): Contains vertices and indices for the sphere.
+* [Sphere Data](./src/components/Object/ObjectData/sphereData.tsx): Contains vertices and indices for the sphere.
 
 
 ## Getting Started
