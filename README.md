@@ -5,7 +5,7 @@ There is an option to enable variation of the width, radius and height of mentio
 
 WebGL is a JavaScript API for rendering interactive 3D and 2D graphics within any compatible web browser without the use of plugins. It is being used in this project to render the rotating objects.
 
-The variation can be done locally in browser (using JavaScript) or received from the Flask/Python server through a websocket (remotely).
+The variation can be done locally in browser (using JavaScript) or received from the Flask/Python server through a websocket (remotely). The server implementation can be found [here](https://github.com/balsa-asanovic/python-socket).
 
 --> [Live Demo](https://imaginative-cat-228fb6.netlify.app/)
 
